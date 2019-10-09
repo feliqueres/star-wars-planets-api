@@ -10,7 +10,6 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PlanetServiceImpl implements PlanetService {
@@ -23,7 +22,7 @@ public class PlanetServiceImpl implements PlanetService {
     }
 
     @Override
-    public List<Planet> getPlanets(final int page, final String name) {
+    public List<Planet> getPlanets(final String name) {
         final List<Planet> planets;
         if (StringUtils.isNotBlank(name))
             planets = repository.findPlanetByName(name);
@@ -37,8 +36,8 @@ public class PlanetServiceImpl implements PlanetService {
     }
 
     @Override
-    public Optional<Planet> getPlanetById(final long id) {
-        return repository.findById(id);
+    public Planet getPlanetById(final long id) throws CustomException {
+        return repository.findById(id).orElseThrow(() -> new CustomException("ID not found"));
     }
 
     @Override
