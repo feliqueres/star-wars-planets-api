@@ -5,7 +5,6 @@ import com.desafio.starwars.exception.CustomException;
 import com.desafio.starwars.repository.PlanetRepository;
 import com.desafio.starwars.service.impl.PlanetServiceImpl;
 import com.desafio.starwars.service.impl.SwApiServiceImpl;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -32,11 +31,6 @@ public class PlanetServiceTest {
 
     @Mock
     private SwApiServiceImpl swApiService;
-
-    @Before
-    public void setUp() throws Exception {
-
-    }
 
     @Test
     public void getPlanets() {
