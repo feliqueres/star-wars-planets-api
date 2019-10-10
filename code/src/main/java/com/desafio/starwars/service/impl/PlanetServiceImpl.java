@@ -37,7 +37,10 @@ public class PlanetServiceImpl implements PlanetService {
 
     @Override
     public Planet getPlanetById(final long id) throws CustomException {
-        return repository.findById(id).orElseThrow(() -> new CustomException("ID not found"));
+        final Planet planet = repository.findById(id).orElseThrow(() -> new CustomException("ID not found"));
+        planet.setAmountMoviesAppearance(swApiService.getAmountMoviesAppearance(planet.getName()));
+
+        return planet;
     }
 
     @Override
